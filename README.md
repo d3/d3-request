@@ -52,9 +52,7 @@ Note: if you wish to specify a request header, you must *not* specify a callback
 
 <a name="header" href="#header">#</a> xhr.<b>header</b>(<i>name</i>[, <i>value</i>])
 
-If *value* is specified, sets the request header with the specified *name* to the specified value and returns this xhr instance. If *value* is null, removes the request header with the specified *name* instead.
-
-If *value* is not specified, returns the current value of the request header with the specified *name*. Header names are case-insensitive.
+If *value* is specified, sets the request header with the specified *name* to the specified value and returns this xhr instance. If *value* is null, removes the request header with the specified *name* instead. If *value* is not specified, returns the current value of the request header with the specified *name*. Header names are case-insensitive.
 
 Request headers can only be modified *before* the request is [sent](#send). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to specify a header; use [xhr.get](#get) or similar instead. For example:
 
@@ -66,23 +64,17 @@ xhr("/path/to/file.csv")
 
 <a name="mimeType" href="#mimeType">#</a> xhr.<b>mimeType</b>([<i>type</i>])
 
-If *type* is specified, sets the request mime type to the specified value and returns this xhr instance. If *type* is null, clears the current mime type (if any) instead. Request headers may only be modified before the request is [sent](#send).
-
-If *type* is not specified, returns the current mime type, which defaults to null.
+If *type* is specified, sets the request mime type to the specified value and returns this xhr instance. If *type* is null, clears the current mime type (if any) instead. Request headers may only be modified before the request is [sent](#send). If *type* is not specified, returns the current mime type, which defaults to null.
 
 The mime type is used to both set the ["Accept" request header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) and for [overrideMimeType](http://www.w3.org/TR/XMLHttpRequest/#the-overridemimetype%28%29-method), where supported.
 
 <a name="responseType" href="#responseType">#</a> xhr.<b>responseType</b>(<i>type</i>)
 
-If *type* is specified, sets the [response type](http://www.w3.org/TR/XMLHttpRequest/#the-responsetype-attribute) attribute of the request and returns this xhr instance. Typical values are: `""`, `"arraybuffer"`, `"blob"`, `"document"`, and `"text"`.
-
-If *type* is not specified, returns the current response type, which defaults to `""`.
+If *type* is specified, sets the [response type](http://www.w3.org/TR/XMLHttpRequest/#the-responsetype-attribute) attribute of the request and returns this xhr instance. Typical values are: `""`, `"arraybuffer"`, `"blob"`, `"document"`, and `"text"`. If *type* is not specified, returns the current response type, which defaults to `""`.
 
 <a name="response" href="#response">#</a> xhr.<b>response</b>(<i>value</i>)
 
-If *value* is specified, sets the response value function to the specified function and returns this xhr instance.
-
-If *value* is not specified, returns the current response value function, which defaults to the identity function.
+If *value* is specified, sets the response value function to the specified function and returns this xhr instance. If *value* is not specified, returns the current response value function, which defaults to the identity function.
 
 The response value function is used to map the response XMLHttpRequest object to a useful data value. For example, for text requests, you might use:
 
@@ -122,9 +114,7 @@ xhr.send("POST", data, callback);
 
 <a name="send" href="#send">#</a> xhr.<b>send</b>(<i>method</i>[, <i>data</i>][, <i>callback</i>])
 
-Issues this request using the specified *method* (such as `"GET"` or `"POST"`), optionally posting the specified *data* in the request body, and returns this xhr instance.
-
-If a *callback* is specified, the callback will be invoked asynchronously when the request succeeds or fails. The callback is invoked with two arguments: the error, if any, and the [response value](#response). The response value is undefined if an error occurs. This is equivalent to:
+Issues this request using the specified *method* (such as `"GET"` or `"POST"`), optionally posting the specified *data* in the request body, and returns this xhr instance. If a *callback* is specified, the callback will be invoked asynchronously when the request succeeds or fails. The callback is invoked with two arguments: the error, if any, and the [response value](#response). The response value is undefined if an error occurs. This is equivalent to:
 
 ```js
 xhr
@@ -141,7 +131,7 @@ Aborts this request, if it is currently in-flight, and returns this xhr instance
 
 <a name="on" href="#on">#</a> xhr.<b>on</b>(<i>type</i>[, <i>listener</i>])
 
-If *listener* is specified, sets the event *listener* for the specified *type* and returns this xhr instance. If an event listener was already registered for the same type, the existing listener is removed before the new listener is added. If *listener* is null, removes the current event *listener* for the specified *type* (if any) instead.
+If *listener* is specified, sets the event *listener* for the specified *type* and returns this xhr instance. If an event listener was already registered for the same type, the existing listener is removed before the new listener is added. If *listener* is null, removes the current event *listener* for the specified *type* (if any) instead. If *listener* is not specified, returns the currently-assigned listener for the specified type, if any.
 
 The type must be one of the following:
 
@@ -151,5 +141,3 @@ The type must be one of the following:
 * _error_ - when the request completes unsuccessfully; this includes 4xx and 5xx response codes.
 
 To register multiple listeners for the same *type*, the type may be followed by an optional name, such as `"load.foo"` and `"load.bar"`. See [d3-dispatch](https://github.com/d3/d3-dispatch) for details.
-
-If *listener* is not specified, returns the currently-assigned listener for the specified type, if any.

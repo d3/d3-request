@@ -1,5 +1,13 @@
 import dispatch from "d3-dispatch";
 
+export function xhrType(defaultMimeType, response) {
+  return function(url, mimeType, callback) {
+    if (!callback && typeof mimeType === "function") callback = mimeType, mimeType = null;
+    var r = xhr(url).mimeType(mimeType == null ? defaultMimeType : mimeType).response(response);
+    return callback ? r.get(callback) : r;
+  };
+};
+
 export default function(url, mimeType, callback) {
   var xhr,
       event = dispatch("beforesend", "progress", "load", "error"),
@@ -40,11 +48,8 @@ export default function(url, mimeType, callback) {
     }
   }
 
-  request.onprogress = function(event) {
-    var o = d3.event;
-    d3.event = event;
-    try { event.progress.call(xhr, request); }
-    finally { d3.event = o; }
+  request.onprogress = function(e) {
+    event.progress.call(xhr, e);
   };
 
   xhr = {
@@ -91,6 +96,7 @@ export default function(url, mimeType, callback) {
     // If callback is non-null, it will be used for error and load events.
     send: function(method, data, callback) {
       if (!callback && typeof data === "function") callback = data, data = null;
+      if (callback && callback.length === 1) callback = fixCallback(callback);
       request.open(method, url, true);
       if (mimeType != null && !headers.has("accept")) headers.set("accept", mimeType + ",*/*");
       if (request.setRequestHeader) headers.forEach(function(value, name) { request.setRequestHeader(name, value); });
@@ -114,7 +120,7 @@ export default function(url, mimeType, callback) {
   };
 
   return callback
-      ? xhr.get(callback.length === 1 ? fixCallback(callback) : callback)
+      ? xhr.get(callback)
       : xhr;
 };
 

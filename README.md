@@ -36,7 +36,7 @@ xhr("/path/to/server")
 
 <a name="xhr" href="#xhr">#</a> <b>xhr</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
 
-Returns a new asynchronous request for specified *url*. If no *callback* is specified, the request is not yet [sent](#sent) and can be further configured. If a *callback* is specified, it is equivalent to calling [xhr.get](#get) immediately after construction:
+Returns a new asynchronous request for specified *url*. If no *callback* is specified, the request is not yet [sent](#send) and can be further configured. If a *callback* is specified, it is equivalent to calling [xhr.get](#get) immediately after construction:
 
 ```js
 xhr(url).get(callback);
@@ -56,7 +56,7 @@ If *value* is specified, sets the request header with the specified *name* to th
 
 If *value* is not specified, returns the current value of the request header with the specified *name*. Header names are case-insensitive.
 
-Request headers can only be modified *before* the request is [sent](#sent). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to specify a header; use [xhr.get](#get) or similar instead. For example:
+Request headers can only be modified *before* the request is [sent](#send). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to specify a header; use [xhr.get](#get) or similar instead. For example:
 
 ```js
 xhr("/path/to/file.csv")
@@ -66,7 +66,7 @@ xhr("/path/to/file.csv")
 
 <a name="mimeType" href="#mimeType">#</a> xhr.<b>mimeType</b>([<i>type</i>])
 
-If *type* is specified, sets the request mime type to the specified value. If *type* is null, clears the current mime type, if any. Request headers may only be modified before the request is [sent](#sent).
+If *type* is specified, sets the request mime type to the specified value. If *type* is null, clears the current mime type, if any. Request headers may only be modified before the request is [sent](#send).
 
 If *type* is not specified, returns the current mime type, which defaults to null.
 

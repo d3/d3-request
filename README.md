@@ -104,12 +104,12 @@ function json(url, callback) {
 }
 ```
 
-<a name="get" href="#get">#</a> xhr.<b>get</b>([<i>data</i>][, <i>callback</i>])
+<a name="get" href="#get">#</a> xhr.<b>get</b>([<i>callback</i>])
 
 Equivalent to [xhr.send](#send) with the GET method:
 
 ```js
-xhr.send("GET", data, callback);
+xhr.send("GET", callback);
 ```
 
 <a name="post" href="#post">#</a> xhr.<b>post</b>([<i>data</i>][, <i>callback</i>])

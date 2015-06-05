@@ -1,7 +1,7 @@
 {
   "name": "d3-xhr",
-  "version": "0.0.2",
-  "description": "Request a resource using XMLHttpRequest.",
+  "version": "0.0.3",
+  "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
     "xhr",

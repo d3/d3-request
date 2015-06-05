@@ -36,7 +36,7 @@ xhr("/path/to/server")
 
 Changes from D3 3.x:
 
-* The *progress* event listener is passed the progress event directly, rather than setting the d3.event global.
+* Any *progress* event listener is passed the event directly as the first argument, rather than setting the d3.event global.
 
 <a name="xhr" href="#xhr">#</a> <b>xhr</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
 

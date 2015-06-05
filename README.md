@@ -10,6 +10,15 @@ xhr("/path/to/file.txt", function(error, request) {
 });
 ```
 
+Or, equivalently with method chaining:
+
+```js
+xhr("/path/to/file.txt")
+    .on("error", function(request) { console.log(request.statusCode); })
+    .on("load", function(request) { console.log(request.responseText); })
+    .send("GET");
+```
+
 To post some query parameters using URL encoding:
 
 ```js

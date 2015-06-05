@@ -4,9 +4,8 @@ A convenient alternative to XMLHttpRequest. For example, to load a text file:
 
 ```js
 xhr("/path/to/file.txt", function(error, request) {
-  if (error) return console.error(error);
-  var text = request.responseText;
-  console.log(text);
+  if (error) return console.error(error.statusCode);
+  console.log(request.responseText);
 });
 ```
 
@@ -14,7 +13,7 @@ Or, equivalently with method chaining:
 
 ```js
 xhr("/path/to/file.txt")
-    .on("error", function(request) { console.log(request.statusCode); })
+    .on("error", function(request) { console.error(request.statusCode); })
     .on("load", function(request) { console.log(request.responseText); })
     .send("GET");
 ```

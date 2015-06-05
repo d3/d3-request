@@ -70,7 +70,7 @@ xhr("/path/to/file.csv")
 
 If *type* is specified, sets the request mime type to the specified value and returns this xhr instance. If *type* is null, clears the current mime type (if any) instead. If *type* is not specified, returns the current mime type, which defaults to null.
 
-The request mime type can only be modified before the request is [sent](#send). Therefore, you must either specify the mime type to the xhr constructor or call this method prior to xhr.send. For example:
+The request mime type can only be modified before the request is [sent](#send). Therefore, you must either specify the mime type to the [xhr constructor](#xhr) or call this method prior to [xhr.send](#send). For example:
 
 ```js
 xhr("/path/to/file.csv")

@@ -128,7 +128,7 @@ If a *callback* is specified, the callback will be invoked asynchronously when t
 
 ```js
 xhr
-    .on("error", callback)
+    .on("error", function(request) { callback(request); })
     .on("load", function(request) { callback(null, request); })
     .send(method);
 ```

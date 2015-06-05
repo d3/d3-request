@@ -16,6 +16,14 @@ tape("xhr(url, callback) makes an asynchronous request with the default mime typ
   });
 });
 
+tape("xhr(url, callback) invokes the callback with an error if the request fails", function(test) {
+  xhr.xhr("//does/not/exist", function(error, request) {
+    test.ok(error instanceof XMLHttpRequest); // A bit weird, but hey.
+    test.equal(request, undefined);
+    test.end();
+  });
+});
+
 tape("xhr(url, callback) is an alias for xhr(url).get(callback)", function(test) {
   xhr.xhr("test/data/sample.txt").get(function(error, request) {
     if (error) throw error;
@@ -45,4 +53,15 @@ tape("xhr(url, mimeType, callback) is an alias for xhr(url).mimeType(mimeType).g
     test.equal(request.responseText, "Hello, world!\n");
     test.end();
   });
+});
+
+tape("xhr(url).on(\"beforesend\", listener).get() invokes the listener before sending", function(test) {
+  var x = xhr.xhr("test/data/sample.txt");
+  x.on("beforesend", function(request) {
+    test.equal(this, x);
+    test.ok(request instanceof XMLHttpRequest);
+    test.equal(request.readyState, 1);
+    test.end();
+  });
+  x.get();
 });

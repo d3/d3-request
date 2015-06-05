@@ -58,7 +58,7 @@ Note: if you wish to specify a request header, you must *not* specify a callback
 
 If *value* is specified, sets the request header with the specified *name* to the specified value and returns this xhr instance. If *value* is null, removes the request header with the specified *name* instead. If *value* is not specified, returns the current value of the request header with the specified *name*. Header names are case-insensitive.
 
-Request headers can only be modified *before* the request is [sent](#send). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to specify a header; use [xhr.get](#get) or similar instead. For example:
+Request headers can only be modified before the request is [sent](#send). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to specify a header; use [xhr.get](#get) or similar instead. For example:
 
 ```js
 xhr("/path/to/file.csv")

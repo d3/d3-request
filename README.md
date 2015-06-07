@@ -88,25 +88,7 @@ If *type* is specified, sets the [response type](http://www.w3.org/TR/XMLHttpReq
 
 If *value* is specified, sets the response value function to the specified function and returns this xhr instance. If *value* is not specified, returns the current response value function, which defaults to the identity function.
 
-The response value function is used to map the response XMLHttpRequest object to a useful data value. For example, for text requests, you might use:
-
-```js
-function text(url, callback) {
-  return xhr(url)
-      .response(function(request) { return request.responseText; })
-      .get(callback);
-}
-```
-
-For JSON requests, you might use:
-
-```js
-function json(url, callback) {
-  return xhr(url)
-      .response(function(request) { return JSON.parse(request.responseText); })
-      .get(callback);
-}
-```
+The response value function is used to map the response XMLHttpRequest object to a useful data value. See the convenience methods [json](#json) and [text](#text) for examples.
 
 <a name="get" href="#get">#</a> *xhr*.<b>get</b>([<i>callback</i>])
 

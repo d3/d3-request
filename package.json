@@ -1,6 +1,6 @@
 {
   "name": "d3-xhr",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "d3-bundler": "~0.2.5",
-    "d3-dispatch": "~0.0.2",
+    "d3-dispatch": "~0.2.0",
     "faucet": "0.0",
     "tape": "4",
     "uglifyjs": "2"

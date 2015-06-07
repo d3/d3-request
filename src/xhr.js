@@ -1,4 +1,4 @@
-import dispatch from "d3-dispatch";
+import {dispatch} from "d3-dispatch";
 
 export function xhrType(defaultMimeType, response) {
   return function(url, mimeType, callback) {

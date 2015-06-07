@@ -147,10 +147,10 @@ If *listener* is specified, sets the event *listener* for the specified *type* a
 
 The type must be one of the following:
 
-* _beforesend_ - before the request is sent, to allow custom headers and the like to be set.
-* _progress_ - to monitor the [progress of the request](http://www.w3.org/TR/progress-events/).
-* _load_ - when the request completes successfully.
-* _error_ - when the request completes unsuccessfully; this includes 4xx and 5xx response codes.
+* `"beforesend"` - to allow custom headers and the like to be set before the request is [sent](#send).
+* `"progress"` - to monitor the [progress of the request](http://www.w3.org/TR/progress-events/).
+* `"load"` - when the request completes successfully.
+* `"error"` - when the request completes unsuccessfully; this includes 4xx and 5xx response codes.
 
 To register multiple listeners for the same *type*, the type may be followed by an optional name, such as `"load.foo"` and `"load.bar"`. See [d3-dispatch](https://github.com/d3/d3-dispatch) for details.
 

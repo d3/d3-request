@@ -136,14 +136,14 @@ The type must be one of the following:
 
 To register multiple listeners for the same *type*, the type may be followed by an optional name, such as `"load.foo"` and `"load.bar"`. See [d3-dispatch](https://github.com/d3/d3-dispatch) for details.
 
-<a name="text" href="#text">#</a> <b>text</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
+<a name="html" href="#html">#</a> <b>html</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
 
-Creates a request for the text file at the specified *url* with the default mime type `"text/plain"`. Approximately equivalent to:
+Creates a request for the HTML file at the specified *url* with the default mime type "text/html". The HTML file is returned as a [document fragment](https://developer.mozilla.org/en-US/docs/DOM/range.createContextualFragment). Approximately equivalent to:
 
 ```js
 xhr(url)
-    .mimeType(mimeType || "text/plain")
-    .response(function(request) { return request.responseText; })
+    .mimeType(mimeType || "text/html")
+    .response(function(request) { return document.createRange().createContextualFragment(request.responseText); })
     .get(callback);
 ```
 
@@ -158,6 +158,17 @@ xhr(url)
     .get(callback);
 ```
 
+<a name="text" href="#text">#</a> <b>text</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
+
+Creates a request for the text file at the specified *url* with the default mime type `"text/plain"`. Approximately equivalent to:
+
+```js
+xhr(url)
+    .mimeType(mimeType || "text/plain")
+    .response(function(request) { return request.responseText; })
+    .get(callback);
+```
+
 <a name="xml" href="#xml">#</a> <b>xml</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
 
 Creates a request for the XML file at the specified *url* with the default mime type `"application/xml"`. Approximately equivalent to:
@@ -166,16 +177,5 @@ Creates a request for the XML file at the specified *url* with the default mime 
 xhr(url)
     .mimeType(mimeType || "application/xml")
     .response(function(request) { return request.responseXML; })
-    .get(callback);
-```
-
-<a name="html" href="#html">#</a> <b>html</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
-
-Creates a request for the HTML file at the specified *url* with the default mime type "text/html". The HTML file is returned as a [document fragment](https://developer.mozilla.org/en-US/docs/DOM/range.createContextualFragment). Approximately equivalent to:
-
-```js
-xhr(url)
-    .mimeType(mimeType || "text/html")
-    .response(function(request) { return document.createRange().createContextualFragment(request.responseText); })
     .get(callback);
 ```

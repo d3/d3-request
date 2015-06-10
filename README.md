@@ -56,15 +56,13 @@ xhr(url).header("Accept-Language", "en-US").get(callback);
 
 <a name="xhr_mimeType" href="#xhr_mimeType">#</a> <i>xhr</i>.<b>mimeType</b>([<i>type</i>])
 
-If *type* is specified, sets the request mime type to the specified value and returns this xhr instance. If *type* is null, clears the current mime type (if any) instead. If *type* is not specified, returns the current mime type, which defaults to null.
+If *type* is specified, sets the request mime type to the specified value and returns this xhr instance. If *type* is null, clears the current mime type (if any) instead. If *type* is not specified, returns the current mime type, which defaults to null. The mime type is used to both set the ["Accept" request header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) and for [overrideMimeType](http://www.w3.org/TR/XMLHttpRequest/#the-overridemimetype%28%29-method), where supported.
 
 The request mime type can only be modified before the request is [sent](#xhr_send). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to override the mime type; use [*xhr*.get](#xhr_get) or similar instead. For example:
 
 ```js
 xhr(url).mimeType("text/csv").get(callback);
 ```
-
-The mime type is used to both set the ["Accept" request header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) and for [overrideMimeType](http://www.w3.org/TR/XMLHttpRequest/#the-overridemimetype%28%29-method), where supported.
 
 <a name="xhr_responseType" href="#xhr_responseType">#</a> <i>xhr</i>.<b>responseType</b>(<i>type</i>)
 

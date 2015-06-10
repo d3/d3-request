@@ -9,16 +9,15 @@ xhr("/path/to/file.txt", function(error, request) {
 });
 ```
 
-Or equivalently with method chaining:
+Or to parse a loaded CSV file:
 
 ```js
-xhr("/path/to/file.txt")
-    .on("error", function(request) { console.error(request.status); })
-    .on("load", function(request) { console.log(request.responseText); })
-    .send("GET");
-```
+csv("/path/to/file.csv", function(error, data) {
+  if (error) return console.error(error.status);
+  console.log(data); // [{"Hello": 42, …}]
+});
 
-To post some query parameters using URL encoding:
+To post some query parameters:
 
 ```js
 xhr("/path/to/resource")
@@ -26,13 +25,7 @@ xhr("/path/to/resource")
     .post("a=2&b=3", callback);
 ```
 
-Or equivalently using JSON encoding:
-
-```js
-xhr("/path/to/resource")
-    .header("Content-Type", "application/json")
-    .post(JSON.stringify({a: 2, b: 3}), callback);
-```
+This module includes support for parsing [JSON](#json), [CSV](#csv) and [TSV](tsv) out of the box.
 
 Changes from D3 3.x:
 
@@ -57,9 +50,7 @@ If *value* is specified, sets the request header with the specified *name* to th
 Request headers can only be modified before the request is [sent](#xhr_send). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to specify a header; use [*xhr*.get](#xhr_get) or similar instead. For example:
 
 ```js
-xhr(url)
-    .header("Accept-Language", "en-US")
-    .get(callback);
+xhr(url).header("Accept-Language", "en-US").get(callback);
 ```
 
 <a name="xhr_mimeType" href="#xhr_mimeType">#</a> <i>xhr</i>.<b>mimeType</b>([<i>type</i>])
@@ -69,9 +60,7 @@ If *type* is specified, sets the request mime type to the specified value and re
 The request mime type can only be modified before the request is [sent](#xhr_send). Therefore, you cannot pass a callback to the [xhr constructor](#xhr) if you wish to override the mime type; use [*xhr*.get](#xhr_get) or similar instead. For example:
 
 ```js
-xhr(url)
-    .mimeType("text/csv")
-    .get(callback);
+xhr(url).mimeType("text/csv").get(callback);
 ```
 
 The mime type is used to both set the ["Accept" request header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) and for [overrideMimeType](http://www.w3.org/TR/XMLHttpRequest/#the-overridemimetype%28%29-method), where supported.
@@ -148,13 +137,13 @@ xhr(url)
 The *row* function can be changed by calling *xhr*.row on the returned instance. For example, this:
 
 ```js
-d3.csv(url, function(d) { return {make: d.Make, year: +d.Year}; }, callback);
+csv(url, function(d) { return {make: d.Make, year: +d.Year}; }, callback);
 ```
 
 Is equivalent to this:
 
 ```js
-d3.csv(url)
+csv(url)
     .row(function(d) { return {make: d.Make, year: +d.Year}; })
     .get(callback);
 ```
@@ -214,13 +203,13 @@ xhr(url)
 The *row* function can be changed by calling *xhr*.row on the returned instance. For example, this:
 
 ```js
-d3.tsv(url, function(d) { return {make: d.Make, year: +d.Year}; }, callback);
+tsv(url, function(d) { return {make: d.Make, year: +d.Year}; }, callback);
 ```
 
 Is equivalent to this:
 
 ```js
-d3.tsv(url)
+tsv(url)
     .row(function(d) { return {make: d.Make, year: +d.Year}; })
     .get(callback);
 ```

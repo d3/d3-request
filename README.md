@@ -138,7 +138,7 @@ To register multiple listeners for the same *type*, the type may be followed by 
 
 <a name="text" href="#text">#</a> <b>text</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
 
-Creates a request for the text file at the specified *url* with the default mime type `"plain/text"`. Approximately equivalent to:
+Creates a request for the text file at the specified *url* with the default mime type `"text/plain"`. Approximately equivalent to:
 
 ```js
 xhr(url)

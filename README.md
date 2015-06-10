@@ -5,7 +5,7 @@ A convenient alternative to XMLHttpRequest. For example, to load a text file:
 ```js
 xhr("/path/to/file.txt", function(error, request) {
   if (error) return console.error(error.status);
-  console.log(request.responseText);
+  console.log(request.responseText); // Hello, world!
 });
 ```
 

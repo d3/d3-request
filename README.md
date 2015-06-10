@@ -125,7 +125,7 @@ To register multiple listeners for the same *type*, the type may be followed by 
 Creates a request for the [CSV](https://github.com/d3/d3-dsv#csv) file at the specified *url* with the default mime type `"text/csv"`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
 
 ```js
-function convert(d) {
+function row(d) {
   return {
     year: new Date(+d.Year, 0, 1), // convert "Year" column to Date
     make: d.Make,
@@ -138,13 +138,13 @@ function convert(d) {
 The *row* conversion function can be changed by calling *xhr*.row on the returned instance. For example, this:
 
 ```js
-csv(url, convert, callback);
+csv(url, row, callback);
 ```
 
 Is equivalent to this:
 
 ```js
-csv(url).row(convert).get(callback);
+csv(url).row(row).get(callback);
 ```
 
 This convenience constructor is approximately equivalent to:
@@ -200,7 +200,7 @@ xhr(url)
 Creates a request for the [TSV](https://github.com/d3/d3-dsv#tsv) file at the specified *url* with the default mime type `"text/tab-separated-values"`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
 
 ```js
-function convert(d) {
+function row(d) {
   return {
     year: new Date(+d.Year, 0, 1), // convert "Year" column to Date
     make: d.Make,
@@ -213,13 +213,13 @@ function convert(d) {
 The *row* conversion function can be changed by calling *xhr*.row on the returned instance. For example, this:
 
 ```js
-tsv(url, convert, callback);
+tsv(url, row, callback);
 ```
 
 Is equivalent to this:
 
 ```js
-tsv(url).row(convert).get(callback);
+tsv(url).row(row).get(callback);
 ```
 
 This convenience constructor is approximately equivalent to:

@@ -11,6 +11,7 @@ global.XMLHttpRequest = function XMLHttpRequest() {
   that.readyState = 0;
 
   that.open = function(m, u, a) {
+    info.method = m;
     info.url = u;
     info.async = a;
     that.readyState = 1;

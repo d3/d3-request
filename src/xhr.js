@@ -1,22 +1,13 @@
 import {dispatch} from "d3-dispatch";
 
-export function xhrType(defaultMimeType, response) {
-  return function(url, mimeType, callback) {
-    if (!callback && typeof mimeType === "function") callback = mimeType, mimeType = null;
-    var r = xhr(url).mimeType(mimeType == null ? defaultMimeType : mimeType).response(response);
-    return callback ? r.get(callback) : r;
-  };
-};
-
-export default function(url, mimeType, callback) {
+export default function(url, callback) {
   var xhr,
       event = dispatch("beforesend", "progress", "load", "error"),
+      mimeType,
       headers = new Map,
       request = new XMLHttpRequest,
       response,
-      responseType = null;
-
-  if (!callback && typeof mimeType === "function") callback = mimeType, mimeType = null;
+      responseType;
 
   // If IE does not support CORS, use XDomainRequest.
   if (typeof XDomainRequest !== "undefined"
@@ -83,14 +74,14 @@ export default function(url, mimeType, callback) {
       return xhr;
     },
 
-    // Alias for send("get", …).
+    // Alias for send("GET", …).
     get: function(data, callback) {
-      return xhr.send("get", data, callback);
+      return xhr.send("GET", data, callback);
     },
 
-    // Alias for send("post", …).
+    // Alias for send("POST", …).
     post: function(data, callback) {
-      return xhr.send("post", data, callback);
+      return xhr.send("POST", data, callback);
     },
 
     // If callback is non-null, it will be used for error and load events.

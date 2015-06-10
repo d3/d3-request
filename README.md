@@ -122,7 +122,30 @@ To register multiple listeners for the same *type*, the type may be followed by 
 
 <a name="csv" href="#csv">#</a> <b>csv</b>(<i>url</i>[, <i>row</i>][, <i>callback</i>])
 
-Creates a request for the [CSV](https://github.com/d3/d3-dsv#csv) file at the specified *url* with the default mime type `"text/csv"`. An optional *row* conversion function may be specified to convert row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details.
+Creates a request for the [CSV](https://github.com/d3/d3-dsv#csv) file at the specified *url* with the default mime type `"text/csv"`. An optional *row* conversion function may be specified to convert row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
+
+```js
+function convert(d) {
+  return {
+    year: new Date(+d.Year, 0, 1), // convert "Year" column to Date
+    make: d.Make,
+    model: d.Model,
+    length: +d.Length // convert "Length" column to number
+  };
+}
+```
+
+The *row* conversion function can be changed by calling *xhr*.row on the returned instance. For example, this:
+
+```js
+csv(url, convert, callback);
+```
+
+Is equivalent to this:
+
+```js
+csv(url).row(convert).get(callback);
+```
 
 This convenience constructor is approximately equivalent to:
 
@@ -130,20 +153,6 @@ This convenience constructor is approximately equivalent to:
 xhr(url)
     .mimeType("text/csv")
     .response(function(request) { return csv.parse(request.responseText, row); })
-    .get(callback);
-```
-
-The *row* function can be changed by calling *xhr*.row on the returned instance. For example, this:
-
-```js
-csv(url, function(d) { return {make: d.Make, year: +d.Year}; }, callback);
-```
-
-Is equivalent to this:
-
-```js
-csv(url)
-    .row(function(d) { return {make: d.Make, year: +d.Year}; })
     .get(callback);
 ```
 
@@ -188,7 +197,30 @@ xhr(url)
 
 <a name="tsv" href="#tsv">#</a> <b>tsv</b>(<i>url</i>[, <i>row</i>][, <i>callback</i>])
 
-Creates a request for the [TSV](https://github.com/d3/d3-dsv#tsv) file at the specified *url* with the default mime type `"text/tab-separated-values"`. An optional *row* conversion function may be specified to convert row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details.
+Creates a request for the [TSV](https://github.com/d3/d3-dsv#tsv) file at the specified *url* with the default mime type `"text/tab-separated-values"`. An optional *row* conversion function may be specified to convert row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
+
+```js
+function convert(d) {
+  return {
+    year: new Date(+d.Year, 0, 1), // convert "Year" column to Date
+    make: d.Make,
+    model: d.Model,
+    length: +d.Length // convert "Length" column to number
+  };
+}
+```
+
+The *row* conversion function can be changed by calling *xhr*.row on the returned instance. For example, this:
+
+```js
+tsv(url, convert, callback);
+```
+
+Is equivalent to this:
+
+```js
+tsv(url).row(convert).get(callback);
+```
 
 This convenience constructor is approximately equivalent to:
 
@@ -196,20 +228,6 @@ This convenience constructor is approximately equivalent to:
 xhr(url)
     .mimeType("text/tab-separated-values")
     .response(function(request) { return tsv.parse(request.responseText, row); })
-    .get(callback);
-```
-
-The *row* function can be changed by calling *xhr*.row on the returned instance. For example, this:
-
-```js
-tsv(url, function(d) { return {make: d.Make, year: +d.Year}; }, callback);
-```
-
-Is equivalent to this:
-
-```js
-tsv(url)
-    .row(function(d) { return {make: d.Make, year: +d.Year}; })
     .get(callback);
 ```
 

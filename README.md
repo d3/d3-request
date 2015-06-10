@@ -14,7 +14,7 @@ To load a CSV file:
 ```js
 csv("/path/to/file.csv", function(error, data) {
   if (error) return console.error(error.status);
-  console.log(data); // [{"Hello": "world!"}, …]
+  console.log(data); // [{"Hello": "world"}, …]
 });
 ```
 

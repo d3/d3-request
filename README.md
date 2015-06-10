@@ -147,7 +147,7 @@ xhr(url)
     .get(callback);
 ```
 
-<a name="json" href="#json">#</a> <b>json</b>(<i>url</i>[, <i>callback</i>])
+<a name="json" href="#json">#</a> <b>json</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
 
 Creates a request for the [JSON](http://json.org) file at the specified *url* with the default mime type `"application/json"`. Approximately equivalent to:
 
@@ -169,7 +169,7 @@ xhr(url)
     .get(callback);
 ```
 
-<a name="html" href="#html">#</a> <b>html</b>(<i>url</i>[, <i>callback</i>])
+<a name="html" href="#html">#</a> <b>html</b>(<i>url</i>[, <i>mimeType</i>][, <i>callback</i>])
 
 Creates a request for the HTML file at the specified *url* with the default mime type "text/html". The HTML file is returned as a [document fragment](https://developer.mozilla.org/en-US/docs/DOM/range.createContextualFragment). Approximately equivalent to:
 

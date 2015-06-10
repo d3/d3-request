@@ -9,7 +9,7 @@ xhr("/path/to/file.txt", function(error, request) {
 });
 ```
 
-Or to parse a loaded CSV file:
+To load a CSV file:
 
 ```js
 csv("/path/to/file.csv", function(error, data) {

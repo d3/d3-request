@@ -14,7 +14,7 @@ Or to parse a loaded CSV file:
 ```js
 csv("/path/to/file.csv", function(error, data) {
   if (error) return console.error(error.status);
-  console.log(data); // [{"Hello": 42, …}]
+  console.log(data); // [{"Hello": "world!"}, …]
 });
 ```
 

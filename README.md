@@ -42,7 +42,7 @@ Returns a new asynchronous request for specified *url*. If no *callback* is spec
 xhr(url).get(callback);
 ```
 
-Note: if you wish to specify a request header or a mime type, you must *not* specify a callback to the constructor. Use [*xhr*.header](#xhr_header) and [*xhr*.mimeType](#xhr_mimeType) followed by [*xhr*.get](#xhr_get) instead.
+Note: if you wish to specify a request header or a mime type, you must *not* specify a callback to the constructor. Use [*xhr*.header](#xhr_header) or [*xhr*.mimeType](#xhr_mimeType) followed by [*xhr*.get](#xhr_get) instead.
 
 <a name="xhr_header" href="#xhr_header">#</a> <i>xhr</i>.<b>header</b>(<i>name</i>[, <i>value</i>])
 

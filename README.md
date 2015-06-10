@@ -16,6 +16,7 @@ csv("/path/to/file.csv", function(error, data) {
   if (error) return console.error(error.status);
   console.log(data); // [{"Hello": 42, …}]
 });
+```
 
 To post some query parameters:
 

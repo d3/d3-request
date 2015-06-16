@@ -28,11 +28,11 @@ xhr("/path/to/resource")
 
 This module includes support for parsing [JSON](#json), [CSV](#csv) and [TSV](tsv) out of the box.
 
-Changes from D3 3.x:
+## Installing
 
-* The [xhr constructor](#xhr) no longer accepts an optional mime type argument. Use [*xhr*.mimeType](#xhr_mimeType) instead.
+If you use NPM, `npm install d3-xhr`. Otherwise, download the [latest release](https://github.com/d3/d3-xhr/releases/latest).
 
-* Any *progress* event listener is passed the event directly as the first argument, rather than setting the d3.event global.
+## API Reference
 
 <a name="xhr" href="#xhr">#</a> <b>xhr</b>(<i>url</i>[, <i>callback</i>])
 
@@ -243,3 +243,9 @@ xhr(url)
     .response(function(request) { return request.responseXML; })
     .get(callback);
 ```
+
+## Changes from D3 3.x:
+
+* The [xhr constructor](#xhr) no longer accepts an optional mime type argument. Use [*xhr*.mimeType](#xhr_mimeType) instead.
+
+* Any *progress* event listener is passed the event directly as the first argument, rather than setting the d3.event global.

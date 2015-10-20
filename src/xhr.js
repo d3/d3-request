@@ -1,10 +1,11 @@
+import {map} from "d3-arrays";
 import {dispatch} from "d3-dispatch";
 
 export default function(url, callback) {
   var xhr,
       event = dispatch("beforesend", "progress", "load", "error"),
       mimeType,
-      headers = new Map,
+      headers = map(),
       request = new XMLHttpRequest,
       response,
       responseType;
@@ -47,7 +48,7 @@ export default function(url, callback) {
     header: function(name, value) {
       name = (name + "").toLowerCase();
       if (arguments.length < 2) return headers.get(name);
-      if (value == null) headers.delete(name);
+      if (value == null) headers.remove(name);
       else headers.set(name, value + "");
       return xhr;
     },
@@ -90,7 +91,7 @@ export default function(url, callback) {
       if (callback && callback.length === 1) callback = fixCallback(callback);
       request.open(method, url, true);
       if (mimeType != null && !headers.has("accept")) headers.set("accept", mimeType + ",*/*");
-      if (request.setRequestHeader) headers.forEach(function(value, name) { request.setRequestHeader(name, value); });
+      if (request.setRequestHeader) headers.forEach(function(name, value) { request.setRequestHeader(name, value); });
       if (mimeType != null && request.overrideMimeType) request.overrideMimeType(mimeType);
       if (responseType != null) request.responseType = responseType;
       if (callback) xhr.on("error", callback).on("load", function(request) { callback(null, request); });

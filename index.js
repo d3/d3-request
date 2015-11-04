@@ -1,17 +1,7 @@
-import xhr from "./src/xhr";
-import html from "./src/html";
-import json from "./src/json";
-import text from "./src/text";
-import xml from "./src/xml";
-import csv from "./src/csv";
-import tsv from "./src/tsv";
-
-export {
-  xhr,
-  html,
-  json,
-  text,
-  xml,
-  csv,
-  tsv
-};
+export {default as xhr} from "./src/xhr";
+export {default as html} from "./src/html";
+export {default as json} from "./src/json";
+export {default as text} from "./src/text";
+export {default as xml} from "./src/xml";
+export {default as csv} from "./src/csv";
+export {default as tsv} from "./src/tsv";

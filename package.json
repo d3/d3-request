@@ -1,6 +1,6 @@
 {
   "name": "d3-xhr",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
@@ -23,7 +23,7 @@
   "scripts": {
     "pretest": "mkdir -p build && d3-bundler -x -f cjs -o build/xhr.cjs.js",
     "test": "faucet `find test -name '*-test.js'`",
-    "prepublish": "npm run test && d3-bundler -o build/xhr.js && uglifyjs build/xhr.js -c -m -o build/xhr.min.js && rm -f build/xhr.zip && zip -j build/xhr.zip -- LICENSE README.md build/xhr.js build/xhr.min.js"
+    "prepublish": "npm run test && d3-bundler -n xhr -o build/xhr.js && uglifyjs build/xhr.js -c -m -o build/xhr.min.js && rm -f build/xhr.zip && zip -j build/xhr.zip -- LICENSE README.md build/xhr.js build/xhr.min.js"
   },
   "dependencies": {
     "d3-arrays": "~0.1.1",

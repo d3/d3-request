@@ -1,6 +1,6 @@
 {
   "name": "d3-xhr",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
@@ -14,22 +14,24 @@
     "name": "Mike Bostock",
     "url": "http://bost.ocks.org/mike"
   },
-  "main": "build/xhr",
+  "main": "build/xhr.cjs",
   "jsnext:main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/d3/d3-xhr.git"
   },
   "scripts": {
-    "pretest": "mkdir -p build && d3-bundler --format=umd --name=xhr -- index.js > build/xhr.js",
+    "pretest": "mkdir -p build && d3-bundler -x -f cjs -o build/xhr.cjs.js",
     "test": "faucet `find test -name '*-test.js'`",
-    "prepublish": "npm run test && uglifyjs build/xhr.js -c -m -o build/xhr.min.js && rm -f build/xhr.zip && zip -j build/xhr.zip -- LICENSE README.md build/xhr.js build/xhr.min.js"
+    "prepublish": "npm run test && d3-bundler -o build/xhr.js && uglifyjs build/xhr.js -c -m -o build/xhr.min.js && rm -f build/xhr.zip && zip -j build/xhr.zip -- LICENSE README.md build/xhr.js build/xhr.min.js"
+  },
+  "dependencies": {
+    "d3-arrays": "~0.1.1",
+    "d3-dispatch": "~0.2.1",
+    "d3-dsv": "~0.1.5"
   },
   "devDependencies": {
-    "d3-arrays": "~0.1.1",
-    "d3-bundler": "~0.2.5",
-    "d3-dispatch": "~0.2.0",
-    "d3-dsv": "~0.1.4",
+    "d3-bundler": "~0.4.0",
     "faucet": "0.0",
     "tape": "4",
     "uglify-js": "2"

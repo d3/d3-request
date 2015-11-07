@@ -1,5 +1,5 @@
-import xhrType from "./xhrType";
+import requestType from "./requestType";
 
-export default xhrType("application/xml", function(request) {
-  return request.responseXML;
+export default requestType("application/xml", function(xhr) {
+  return xhr.responseXML;
 });

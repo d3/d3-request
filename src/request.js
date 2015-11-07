@@ -2,62 +2,62 @@ import {map} from "d3-arrays";
 import {dispatch} from "d3-dispatch";
 
 export default function(url, callback) {
-  var xhr,
+  var request,
       event = dispatch("beforesend", "progress", "load", "error"),
       mimeType,
       headers = map(),
-      request = new XMLHttpRequest,
+      xhr = new XMLHttpRequest,
       response,
       responseType;
 
   // If IE does not support CORS, use XDomainRequest.
   if (typeof XDomainRequest !== "undefined"
-      && !("withCredentials" in request)
-      && /^(http(s)?:)?\/\//.test(url)) request = new XDomainRequest;
+      && !("withCredentials" in xhr)
+      && /^(http(s)?:)?\/\//.test(url)) xhr = new XDomainRequest;
 
-  "onload" in request
-      ? request.onload = request.onerror = respond
-      : request.onreadystatechange = function() { request.readyState > 3 && respond(); };
+  "onload" in xhr
+      ? xhr.onload = xhr.onerror = respond
+      : xhr.onreadystatechange = function() { xhr.readyState > 3 && respond(); };
 
   function respond() {
-    var status = request.status, result;
-    if (!status && hasResponse(request)
+    var status = xhr.status, result;
+    if (!status && hasResponse(xhr)
         || status >= 200 && status < 300
         || status === 304) {
       if (response) {
         try {
-          result = response.call(xhr, request);
+          result = response.call(request, xhr);
         } catch (e) {
-          event.error.call(xhr, e);
+          event.error.call(request, e);
           return;
         }
       } else {
-        result = request;
+        result = xhr;
       }
-      event.load.call(xhr, result);
+      event.load.call(request, result);
     } else {
-      event.error.call(xhr, request);
+      event.error.call(request, xhr);
     }
   }
 
-  request.onprogress = function(e) {
-    event.progress.call(xhr, e);
+  xhr.onprogress = function(e) {
+    event.progress.call(request, e);
   };
 
-  xhr = {
+  request = {
     header: function(name, value) {
       name = (name + "").toLowerCase();
       if (arguments.length < 2) return headers.get(name);
       if (value == null) headers.remove(name);
       else headers.set(name, value + "");
-      return xhr;
+      return request;
     },
 
     // If mimeType is non-null and no Accept header is set, a default is used.
     mimeType: function(value) {
       if (!arguments.length) return mimeType;
       mimeType = value == null ? null : value + "";
-      return xhr;
+      return request;
     },
 
     // Specifies what type the response value should take;
@@ -65,66 +65,66 @@ export default function(url, callback) {
     responseType: function(value) {
       if (!arguments.length) return responseType;
       responseType = value;
-      return xhr;
+      return request;
     },
 
     // Specify how to convert the response content to a specific type;
     // changes the callback value on "load" events.
     response: function(value) {
       response = value;
-      return xhr;
+      return request;
     },
 
     // Alias for send("GET", …).
     get: function(data, callback) {
-      return xhr.send("GET", data, callback);
+      return request.send("GET", data, callback);
     },
 
     // Alias for send("POST", …).
     post: function(data, callback) {
-      return xhr.send("POST", data, callback);
+      return request.send("POST", data, callback);
     },
 
     // If callback is non-null, it will be used for error and load events.
     send: function(method, data, callback) {
       if (!callback && typeof data === "function") callback = data, data = null;
       if (callback && callback.length === 1) callback = fixCallback(callback);
-      request.open(method, url, true);
+      xhr.open(method, url, true);
       if (mimeType != null && !headers.has("accept")) headers.set("accept", mimeType + ",*/*");
-      if (request.setRequestHeader) headers.forEach(function(name, value) { request.setRequestHeader(name, value); });
-      if (mimeType != null && request.overrideMimeType) request.overrideMimeType(mimeType);
-      if (responseType != null) request.responseType = responseType;
-      if (callback) xhr.on("error", callback).on("load", function(request) { callback(null, request); });
-      event.beforesend.call(xhr, request);
-      request.send(data == null ? null : data);
-      return xhr;
+      if (xhr.setRequestHeader) headers.each(function(value, name) { xhr.setRequestHeader(name, value); });
+      if (mimeType != null && xhr.overrideMimeType) xhr.overrideMimeType(mimeType);
+      if (responseType != null) xhr.responseType = responseType;
+      if (callback) request.on("error", callback).on("load", function(xhr) { callback(null, xhr); });
+      event.beforesend.call(request, xhr);
+      xhr.send(data == null ? null : data);
+      return request;
     },
 
     abort: function() {
-      request.abort();
-      return xhr;
+      xhr.abort();
+      return request;
     },
 
     on: function() {
       var value = event.on.apply(event, arguments);
-      return value === event ? xhr : value;
+      return value === event ? request : value;
     }
   };
 
   return callback
-      ? xhr.get(callback)
-      : xhr;
+      ? request.get(callback)
+      : request;
 };
 
 function fixCallback(callback) {
-  return function(error, request) {
-    callback(error == null ? request : null);
+  return function(error, xhr) {
+    callback(error == null ? xhr : null);
   };
 }
 
-function hasResponse(request) {
-  var type = request.responseType;
+function hasResponse(xhr) {
+  var type = xhr.responseType;
   return type && type !== "text"
-      ? request.response // null on error
-      : request.responseText; // "" on error
+      ? xhr.response // null on error
+      : xhr.responseText; // "" on error
 }

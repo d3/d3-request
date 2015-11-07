@@ -1,4 +1,4 @@
-export {default as xhr} from "./src/xhr";
+export {default as request} from "./src/request";
 export {default as html} from "./src/html";
 export {default as json} from "./src/json";
 export {default as text} from "./src/text";

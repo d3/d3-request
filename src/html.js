@@ -1,5 +1,5 @@
-import xhrType from "./xhrType";
+import requestType from "./requestType";
 
-export default xhrType("text/html", function(request) {
-  return document.createRange().createContextualFragment(request.responseText);
+export default requestType("text/html", function(xhr) {
+  return document.createRange().createContextualFragment(xhr.responseText);
 });

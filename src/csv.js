@@ -1,4 +1,4 @@
 import {csv} from "d3-dsv";
-import xhrDsv from "./xhrDsv";
+import requestDsv from "./requestDsv";
 
-export default xhrDsv("text/csv", csv);
+export default requestDsv("text/csv", csv);

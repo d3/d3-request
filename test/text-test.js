@@ -1,10 +1,10 @@
 var tape = require("tape"),
-    xhr = require("../");
+    request = require("../");
 
 require("./XMLHttpRequest");
 
 tape("text(url, callback) makes an asynchronous GET request for a plain text file", function(test) {
-  xhr.text("test/data/sample.txt", function(error, text) {
+  request.text("test/data/sample.txt", function(error, text) {
     if (error) throw error;
     test.equal(XMLHttpRequest._last._info.url, "test/data/sample.txt");
     test.equal(XMLHttpRequest._last._info.method, "GET");
@@ -18,7 +18,7 @@ tape("text(url, callback) makes an asynchronous GET request for a plain text fil
 });
 
 tape("text(url, callback) is an alias for text(url).get(callback)", function(test) {
-  xhr.text("test/data/sample.txt").get(function(error, text) {
+  request.text("test/data/sample.txt").get(function(error, text) {
     if (error) throw error;
     test.equal(XMLHttpRequest._last._info.url, "test/data/sample.txt");
     test.equal(XMLHttpRequest._last._info.method, "GET");
@@ -32,7 +32,7 @@ tape("text(url, callback) is an alias for text(url).get(callback)", function(tes
 });
 
 tape("text(url).mimeType(type).get(callback) observes the specified mime type", function(test) {
-  xhr.text("test/data/sample.txt").mimeType("text/plain+special").get(function(error, text) {
+  request.text("test/data/sample.txt").mimeType("text/plain+special").get(function(error, text) {
     if (error) throw error;
     test.equal(XMLHttpRequest._last._info.mimeType, "text/plain+special");
     test.equal(text, "Hello, world!\n");

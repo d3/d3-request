@@ -1,6 +1,6 @@
 {
   "name": "d3-request",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
@@ -14,25 +14,25 @@
     "name": "Mike Bostock",
     "url": "http://bost.ocks.org/mike"
   },
-  "main": "build/request.cjs",
+  "main": "build/d3-request.js",
   "jsnext:main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/d3/d3-request.git"
   },
   "scripts": {
-    "pretest": "mkdir -p build && d3-bundler -x -f cjs -o build/request.cjs.js",
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -g d3-arrays:d3_arrays,d3-dispatch:d3_dispatch,d3-dsv:d3_dsv -u d3-request -n d3_request -o build/d3-request.js -- build/bundle.js",
     "test": "faucet `find test -name '*-test.js'`",
-    "prepublish": "npm run test && d3-bundler -n request -o build/request.js && uglifyjs build/request.js -c -m -o build/request.min.js && rm -f build/request.zip && zip -j build/request.zip -- LICENSE README.md build/request.js build/request.min.js"
+    "prepublish": "npm run test && uglifyjs build/d3-request.js -c -m -o build/d3-request.min.js && rm -f build/d3-request.zip && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
   },
   "dependencies": {
-    "d3-arrays": "~0.3.0",
-    "d3-dispatch": "~0.2.3",
-    "d3-dsv": "~0.1.6"
+    "d3-arrays": "~0.3.1",
+    "d3-dispatch": "~0.2.4",
+    "d3-dsv": "~0.1.9"
   },
   "devDependencies": {
-    "d3-bundler": "~0.4.2",
     "faucet": "0.0",
+    "rollup": "0.20.5",
     "tape": "4",
     "uglify-js": "2"
   }

@@ -26,9 +26,9 @@
     "prepublish": "npm run test && uglifyjs build/d3-request.js -c -m -o build/d3-request.min.js && rm -f build/d3-request.zip && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
   },
   "dependencies": {
-    "d3-arrays": "~0.3.1",
+    "d3-array": "~0.5.1",
     "d3-dispatch": "~0.2.4",
-    "d3-dsv": "~0.1.9"
+    "d3-dsv": "~0.1.11"
   },
   "devDependencies": {
     "faucet": "0.0",

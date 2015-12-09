@@ -21,7 +21,7 @@
     "url": "https://github.com/d3/d3-request.git"
   },
   "scripts": {
-    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -g d3-arrays:d3_arrays,d3-dispatch:d3_dispatch,d3-dsv:d3_dsv -u d3-request -n d3_request -o build/d3-request.js -- build/bundle.js",
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -g d3-array:d3_array,d3-dispatch:d3_dispatch,d3-dsv:d3_dsv -u d3-request -n d3_request -o build/d3-request.js -- build/bundle.js",
     "test": "faucet `find test -name '*-test.js'`",
     "prepublish": "npm run test && uglifyjs build/d3-request.js -c -m -o build/d3-request.min.js && rm -f build/d3-request.zip && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
   },

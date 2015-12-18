@@ -1,6 +1,6 @@
 {
   "name": "d3-request",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
@@ -26,9 +26,9 @@
     "prepublish": "npm run test && uglifyjs build/d3-request.js -c -m -o build/d3-request.min.js && rm -f build/d3-request.zip && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
   },
   "dependencies": {
-    "d3-array": "~0.5.1",
+    "d3-array": "~0.6.1",
     "d3-dispatch": "~0.2.4",
-    "d3-dsv": "~0.1.11"
+    "d3-dsv": "~0.1.13"
   },
   "devDependencies": {
     "faucet": "0.0",

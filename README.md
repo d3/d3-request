@@ -168,7 +168,7 @@ This convenience constructor is approximately equivalent to:
 ```js
 d3_request.request(url)
     .mimeType("text/csv")
-    .response(function(xhr) { return csv.parse(xhr.responseText, row); })
+    .response(function(xhr) { return d3_dsv.csv.parse(xhr.responseText, row); })
     .get(callback);
 ```
 
@@ -245,7 +245,7 @@ This convenience constructor is approximately equivalent to:
 ```js
 d3_request.request(url)
     .mimeType("text/tab-separated-values")
-    .response(function(xhr) { return tsv.parse(xhr.responseText, row); })
+    .response(function(xhr) { return d3_dsv.tsv.parse(xhr.responseText, row); })
     .get(callback);
 ```
 

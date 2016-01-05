@@ -8,7 +8,8 @@ export default function(url, callback) {
       headers = map(),
       xhr = new XMLHttpRequest,
       response,
-      responseType;
+      responseType,
+      timeout = 0;
 
   // If IE does not support CORS, use XDomainRequest.
   if (typeof XDomainRequest !== "undefined"
@@ -16,7 +17,7 @@ export default function(url, callback) {
       && /^(http(s)?:)?\/\//.test(url)) xhr = new XDomainRequest;
 
   "onload" in xhr
-      ? xhr.onload = xhr.onerror = respond
+      ? xhr.onload = xhr.onerror = xhr.ontimeout = respond
       : xhr.onreadystatechange = function() { xhr.readyState > 3 && respond(); };
 
   function respond() {
@@ -68,6 +69,12 @@ export default function(url, callback) {
       return request;
     },
 
+    timeout: function(value) {
+      if (!arguments.length) return timeout;
+      timeout = +value;
+      return request;
+    },
+
     // Specify how to convert the response content to a specific type;
     // changes the callback value on "load" events.
     response: function(value) {
@@ -94,6 +101,7 @@ export default function(url, callback) {
       if (xhr.setRequestHeader) headers.each(function(value, name) { xhr.setRequestHeader(name, value); });
       if (mimeType != null && xhr.overrideMimeType) xhr.overrideMimeType(mimeType);
       if (responseType != null) xhr.responseType = responseType;
+      if (timeout > 0) xhr.timeout = timeout;
       if (callback) request.on("error", callback).on("load", function(xhr) { callback(null, xhr); });
       event.beforesend.call(request, xhr);
       xhr.send(data == null ? null : data);

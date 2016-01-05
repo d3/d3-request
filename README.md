@@ -78,15 +78,17 @@ d3_request.request(url)
     .get(callback);
 ```
 
-<a name="request_responseType" href="#request_responseType">#</a> <i>request</i>.<b>responseType</b>(<i>type</i>)
+<a name="request_timeout" href="#request_timeout">#</a> <i>request</i>.<b>timeout</b>([<i>timeout</i>])
+
+If *timeout* is specified, sets the [timeout](http://www.w3.org/TR/XMLHttpRequest/#the-timeout-attribute) attribute of the request to the specified number of milliseconds and returns this request instance. If *timeout* is not specified, returns the current response timeout, which defaults to 0.
+
+<a name="request_responseType" href="#request_responseType">#</a> <i>request</i>.<b>responseType</b>([<i>type</i>])
 
 If *type* is specified, sets the [response type](http://www.w3.org/TR/XMLHttpRequest/#the-responsetype-attribute) attribute of the request and returns this request instance. Typical values are: `""`, `"arraybuffer"`, `"blob"`, `"document"`, and `"text"`. If *type* is not specified, returns the current response type, which defaults to `""`.
 
 <a name="request_response" href="#request_response">#</a> <i>request</i>.<b>response</b>(<i>value</i>)
 
-If *value* is specified, sets the response value function to the specified function and returns this request instance. If *value* is not specified, returns the current response value function, which defaults to the identity function.
-
-The response value function is used to map the response XMLHttpRequest object to a useful data value. See the convenience methods [json](#json) and [text](#text) for examples.
+Sets the response value function to the specified function and returns this request instance. The response value function is used to map the response XMLHttpRequest object to a useful data value. See the convenience methods [json](#json) and [text](#text) for examples.
 
 <a name="request_get" href="#request_get">#</a> <i>request</i>.<b>get</b>([<i>callback</i>])
 

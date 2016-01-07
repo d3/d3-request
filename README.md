@@ -33,7 +33,7 @@ This module has built-in support for parsing [JSON](#json), [XML](#xml), [CSV](#
 If you use NPM, `npm install d3-request`. Otherwise, download the [latest release](https://github.com/d3/d3-request/releases/latest). The released bundle supports AMD, CommonJS, and vanilla environments. (Note that Node is not supported, as this module requires XMLHttpRequest.) Create a custom build using [Rollup](https://github.com/rollup/rollup) or your preferred bundler. You can also load directly from [d3js.org](https://d3js.org):
 
 ```html
-<script src="https://d3js.org/d3-array.v0.6.min.js"></script>
+<script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
 <script src="https://d3js.org/d3-dispatch.v0.2.min.js"></script>
 <script src="https://d3js.org/d3-dsv.v0.1.min.js"></script>
 <script src="https://d3js.org/d3-request.v0.2.min.js"></script>

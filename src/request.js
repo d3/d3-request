@@ -1,4 +1,4 @@
-import {map} from "d3-array";
+import {map} from "d3-collection";
 import {dispatch} from "d3-dispatch";
 
 export default function(url, callback) {

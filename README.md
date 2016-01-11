@@ -3,9 +3,9 @@
 This module provides a convenient alternative to XMLHttpRequest. For example, to load a text file:
 
 ```js
-d3.request("/path/to/file.txt", function(error, request) {
-  if (error) return console.error(error.status);
-  console.log(request.responseText); // Hello, world!
+d3.requestText("/path/to/file.txt", function(error, text) {
+  if (error) throw error;
+  console.log(text); // Hello, world!
 });
 ```
 
@@ -13,7 +13,7 @@ To load and parse a CSV file:
 
 ```js
 d3.requestCsv("/path/to/file.csv", function(error, data) {
-  if (error) return console.error(error.status);
+  if (error) throw error;
   console.log(data); // [{"Hello": "world"}, …]
 });
 ```

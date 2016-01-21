@@ -5,4 +5,4 @@ export default function(defaultMimeType, response) {
     var r = request(url).mimeType(defaultMimeType).response(response);
     return callback ? r.get(callback) : r;
   };
-};
+}

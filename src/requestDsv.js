@@ -8,7 +8,7 @@ export default function(defaultMimeType, dsv) {
     r.row(row);
     return callback ? r.get(callback) : r;
   };
-};
+}
 
 function responseOf(dsv, row) {
   return function(request) {

@@ -122,7 +122,7 @@ export default function(url, callback) {
   return callback
       ? request.get(callback)
       : request;
-};
+}
 
 function fixCallback(callback) {
   return function(error, xhr) {

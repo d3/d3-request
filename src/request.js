@@ -18,9 +18,9 @@ export default function(url, callback) {
 
   "onload" in xhr
       ? xhr.onload = xhr.onerror = xhr.ontimeout = respond
-      : xhr.onreadystatechange = function() { xhr.readyState > 3 && respond(); };
+      : xhr.onreadystatechange = function(o) { xhr.readyState > 3 && respond(o); };
 
-  function respond() {
+  function respond(o) {
     var status = xhr.status, result;
     if (!status && hasResponse(xhr)
         || status >= 200 && status < 300
@@ -37,7 +37,7 @@ export default function(url, callback) {
       }
       event.load.call(request, result);
     } else {
-      event.error.call(request, xhr);
+      event.error.call(request, o);
     }
   }
 

@@ -19,7 +19,8 @@ tape("request(url, callback) makes an asynchronous GET request with the default 
 
 tape("request(url, callback) invokes the callback with an error if the request fails", function(test) {
   request.request("//does/not/exist", function(error, request) {
-    test.ok(error instanceof XMLHttpRequest); // A bit weird, but hey.
+    test.ok(error instanceof XMLHttpRequestProgressEvent);
+    test.ok(error.target instanceof XMLHttpRequest);
     test.equal(request, undefined);
     test.end();
   });

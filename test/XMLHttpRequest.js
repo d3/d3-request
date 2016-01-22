@@ -1,5 +1,11 @@
 var fs = require("fs");
 
+global.XMLHttpRequestProgressEvent = function XMLHttpRequestProgressEvent(target) {
+  this.target = target;
+};
+
+XMLHttpRequestProgressEvent.prototype = Object.create(Error);
+
 global.XMLHttpRequest = function XMLHttpRequest() {
   var that = this,
       info = that._info = {},
@@ -35,7 +41,7 @@ global.XMLHttpRequest = function XMLHttpRequest() {
       }
       that.readyState = 4;
       XMLHttpRequest._last = that;
-      if (that.onreadystatechange) that.onreadystatechange();
+      if (that.onreadystatechange) that.onreadystatechange(new XMLHttpRequestProgressEvent(that));
     });
   }
 
@@ -52,7 +58,7 @@ global.XMLHttpRequest = function XMLHttpRequest() {
     }
     that.readyState = 4;
     XMLHttpRequest._last = that;
-    if (that.onreadystatechange) that.onreadystatechange();
+    if (that.onreadystatechange) that.onreadystatechange(new XMLHttpRequestProgressEvent(that));
   }
 
   that.getResponseHeader = function(n) {

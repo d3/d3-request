@@ -112,7 +112,7 @@ Issues this request using the specified *method* (such as `"GET"` or `"POST"`), 
 
 ```js
 request
-    .on("error", function(xhr) { callback(xhr); })
+    .on("error", function(error) { callback(error); })
     .on("load", function(xhr) { callback(null, xhr); })
     .send(method);
 ```

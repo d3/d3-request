@@ -1,5 +1,5 @@
-import requestType from "./requestType";
+import type from "./type";
 
-export default requestType("application/json", function(xhr) {
+export default type("application/json", function(xhr) {
   return JSON.parse(xhr.responseText);
 });

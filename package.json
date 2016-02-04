@@ -1,6 +1,6 @@
 {
   "name": "d3-request",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
@@ -24,12 +24,12 @@
     "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -g d3-collection:d3_collection,d3-dispatch:d3_dispatch,d3-dsv:d3_dsv -n d3_request -o build/d3-request.js -- build/bundle.js",
     "test": "faucet `find test -name '*-test.js'` && eslint index.js src",
     "prepublish": "npm run test && uglifyjs build/d3-request.js -c -m -o build/d3-request.min.js && rm -f build/d3-request.zip && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js",
-    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git tag -am \"Release $VERSION.\" v${VERSION} && git push --tags && cp build/d3-request.js ../d3.github.com/d3-request.v0.3.js && cp build/d3-request.min.js ../d3.github.com/d3-request.v0.3.min.js && cd ../d3.github.com && git add d3-request.v0.3.js d3-request.v0.3.min.js && git commit -m \"d3-request ${VERSION}\" && git push"
+    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git tag -am \"Release $VERSION.\" v${VERSION} && git push --tags && cp build/d3-request.js ../d3.github.com/d3-request.v0.4.js && cp build/d3-request.min.js ../d3.github.com/d3-request.v0.4.min.js && cd ../d3.github.com && git add d3-request.v0.4.js d3-request.v0.4.min.js && git commit -m \"d3-request ${VERSION}\" && git push"
   },
   "dependencies": {
     "d3-collection": "~0.1.1",
     "d3-dispatch": "~0.2.6",
-    "d3-dsv": "~0.1.14"
+    "d3-dsv": "~0.2.0"
   },
   "devDependencies": {
     "faucet": "0.0",

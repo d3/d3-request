@@ -1,4 +1,4 @@
-import {tsv} from "d3-dsv";
-import requestDsv from "./requestDsv";
+import {tsvParse} from "d3-dsv";
+import dsv from "./dsv";
 
-export default requestDsv("text/tab-separated-values", tsv);
+export default dsv("text/tab-separated-values", tsvParse);

@@ -1,5 +1,5 @@
-import requestType from "./requestType";
+import type from "./type";
 
-export default requestType("text/plain", function(xhr) {
+export default type("text/plain", function(xhr) {
   return xhr.responseText;
 });

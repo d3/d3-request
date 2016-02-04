@@ -1,4 +1,4 @@
-import {csv} from "d3-dsv";
-import requestDsv from "./requestDsv";
+import {csvParse} from "d3-dsv";
+import dsv from "./dsv";
 
-export default requestDsv("text/csv", csv);
+export default dsv("text/csv", csvParse);

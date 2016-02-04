@@ -1,6 +1,6 @@
-import requestType from "./requestType";
+import type from "./type";
 
-export default requestType("application/xml", function(xhr) {
+export default type("application/xml", function(xhr) {
   var xml = xhr.responseXML;
   if (!xml) throw new Error("parse error");
   return xml;

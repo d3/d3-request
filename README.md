@@ -34,7 +34,7 @@ If you use NPM, `npm install d3-request`. Otherwise, download the [latest releas
 
 ```html
 <script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
-<script src="https://d3js.org/d3-dispatch.v0.2.min.js"></script>
+<script src="https://d3js.org/d3-dispatch.v0.3.min.js"></script>
 <script src="https://d3js.org/d3-dsv.v0.2.min.js"></script>
 <script src="https://d3js.org/d3-request.v0.4.min.js"></script>
 ```

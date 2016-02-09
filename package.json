@@ -1,6 +1,6 @@
 {
   "name": "d3-request",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "d3-collection": "~0.1.1",
-    "d3-dispatch": "~0.3.0",
+    "d3-dispatch": "~0.4.0",
     "d3-dsv": "~0.2.0"
   },
   "devDependencies": {

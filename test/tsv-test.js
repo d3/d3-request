@@ -1,8 +1,8 @@
-var tape = require("tape"),
-    request = require("../"),
-    table = require("./table");
-
 require("./XMLHttpRequest");
+
+var tape = require("tape"),
+    request = require("../build/d3-request"),
+    table = require("./table");
 
 tape("tsv(url, callback) makes an asynchronous GET request for a TSV file", function(test) {
   request.tsv("test/data/sample.tsv", function(error, data) {

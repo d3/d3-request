@@ -1,7 +1,7 @@
-var tape = require("tape"),
-    request = require("../");
-
 require("./XMLHttpRequest");
+
+var tape = require("tape"),
+    request = require("../build/d3-request");
 
 tape("request(url, callback) makes an asynchronous GET request with the default mime type", function(test) {
   request.request("test/data/sample.txt", function(error, request) {

@@ -1,7 +1,7 @@
-var tape = require("tape"),
-    request = require("../");
-
 require("./XMLHttpRequest");
+
+var tape = require("tape"),
+    request = require("../build/d3-request");
 
 tape("json(url, callback) makes an asynchronous GET request for a JSON file", function(test) {
   request.json("test/data/sample.json", function(error, json) {

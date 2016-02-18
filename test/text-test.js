@@ -1,7 +1,7 @@
-var tape = require("tape"),
-    request = require("../");
-
 require("./XMLHttpRequest");
+
+var tape = require("tape"),
+    request = require("../build/d3-request");
 
 tape("text(url, callback) makes an asynchronous GET request for a plain text file", function(test) {
   request.text("test/data/sample.txt", function(error, text) {

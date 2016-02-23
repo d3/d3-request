@@ -30,7 +30,7 @@
   "dependencies": {
     "d3-collection": "~0.1.1",
     "d3-dispatch": "~0.4.0",
-    "d3-dsv": "~0.2.0",
+    "d3-dsv": "~0.3.0",
     "xmlhttprequest": "1"
   },
   "devDependencies": {

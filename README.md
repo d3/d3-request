@@ -35,7 +35,7 @@ If you use NPM, `npm install d3-request`. Otherwise, download the [latest releas
 ```html
 <script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
 <script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
-<script src="https://d3js.org/d3-dsv.v0.2.min.js"></script>
+<script src="https://d3js.org/d3-dsv.v0.3.min.js"></script>
 <script src="https://d3js.org/d3-request.v0.4.min.js"></script>
 ```
 
@@ -138,7 +138,7 @@ To register multiple listeners for the same *type*, the type may be followed by 
 
 <a name="csv" href="#csv">#</a> d3.<b>csv</b>(<i>url</i>[, <i>row</i>][, <i>callback</i>])
 
-Creates a request for the [CSV](https://github.com/d3/d3-dsv#csv) file at the specified *url* with the default mime type `"text/csv"`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
+Creates a request for the [CSV](https://github.com/d3/d3-dsv#csvParse) file at the specified *url* with the default mime type `"text/csv"`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
 
 ```js
 function row(d) {
@@ -170,7 +170,7 @@ This convenience constructor is approximately equivalent to:
 ```js
 d3.request(url)
     .mimeType("text/csv")
-    .response(function(xhr) { return d3.csv.parse(xhr.responseText, row); })
+    .response(function(xhr) { return d3.csvParse(xhr.responseText, row); })
     .get(callback);
 ```
 
@@ -215,7 +215,7 @@ d3.request(url)
 
 <a name="tsv" href="#tsv">#</a> d3.<b>tsv</b>(<i>url</i>[, <i>row</i>][, <i>callback</i>])
 
-Creates a request for the [TSV](https://github.com/d3/d3-dsv#tsv) file at the specified *url* with the default mime type `"text/tab-separated-values"`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
+Creates a request for the [TSV](https://github.com/d3/d3-dsv#tsvParse) file at the specified *url* with the default mime type `"text/tab-separated-values"`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
 
 ```js
 function row(d) {
@@ -247,7 +247,7 @@ This convenience constructor is approximately equivalent to:
 ```js
 d3.request(url)
     .mimeType("text/tab-separated-values")
-    .response(function(xhr) { return d3.tsv.parse(xhr.responseText, row); })
+    .response(function(xhr) { return d3.tsvParse(xhr.responseText, row); })
     .get(callback);
 ```
 

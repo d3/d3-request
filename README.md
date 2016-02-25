@@ -30,16 +30,21 @@ This module has built-in support for parsing [JSON](#json), [XML](#xml), [CSV](#
 
 ## Installing
 
-If you use NPM, `npm install d3-request`. Otherwise, download the [latest release](https://github.com/d3/d3-request/releases/latest). The released bundle supports AMD, CommonJS, and vanilla environments. (Node requires [xmlhttprequest](https://www.npmjs.com/package/xmlhttprequest); as such, [html](#html) and [xml](#xml) are not supported on Node.) Create a custom build using [Rollup](https://github.com/rollup/rollup) or your preferred bundler. You can also load directly from [d3js.org](https://d3js.org):
+If you use NPM, `npm install d3-request`. Otherwise, download the [latest release](https://github.com/d3/d3-request/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-request.v0.4.min.js) or as part of [D3 4.0 alpha](https://github.com/mbostock/d3/tree/4). AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3_request` global is exported:
 
 ```html
 <script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
 <script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
 <script src="https://d3js.org/d3-dsv.v0.3.min.js"></script>
 <script src="https://d3js.org/d3-request.v0.4.min.js"></script>
+<script>
+
+d3_request.csv("/path/to/file.csv", callback);
+
+</script>
 ```
 
-In a vanilla environment, a `d3_request` global is exported.
+[Try d3-request in your browser.](https://tonicdev.com/npm/d3-request)
 
 ## API Reference
 

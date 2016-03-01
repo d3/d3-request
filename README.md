@@ -22,6 +22,7 @@ To post some query parameters:
 
 ```js
 d3.request("/path/to/resource")
+    .header("X-Requested-With", "XMLHttpRequest")
     .header("Content-Type", "application/x-www-form-urlencoded")
     .post("a=2&b=3", callback);
 ```
@@ -68,8 +69,11 @@ Request headers can only be modified before the request is [sent](#request_send)
 ```js
 d3.request(url)
     .header("Accept-Language", "en-US")
+    .header("X-Requested-With", "XMLHttpRequest")
     .get(callback);
 ```
+
+Note: this library does not set the X-Requested-With header to `XMLHttpRequest` by default. Some servers require this header to mitigate unwanted requests, but the presence of the header triggers CORS preflight checks; if necessary, set this header before sending the request.
 
 <a name="request_mimeType" href="#request_mimeType">#</a> <i>request</i>.<b>mimeType</b>([<i>type</i>])
 

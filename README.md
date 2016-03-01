@@ -87,6 +87,14 @@ d3.request(url)
     .get(callback);
 ```
 
+<a name="request_user" href="#request_user">#</a> <i>request</i>.<b>user</b>([<i>value</i>])
+
+If *value* is specified, sets the user name for authentication to the specified string and returns this request instance. If *value* is not specified, returns the current user name, which defaults to null.
+
+<a name="request_password" href="#request_password">#</a> <i>request</i>.<b>password</b>([<i>value</i>])
+
+If *value* is specified, sets the password for authentication to the specified string and returns this request instance. If *value* is not specified, returns the current password, which defaults to null.
+
 <a name="request_timeout" href="#request_timeout">#</a> <i>request</i>.<b>timeout</b>([<i>timeout</i>])
 
 If *timeout* is specified, sets the [timeout](http://www.w3.org/TR/XMLHttpRequest/#the-timeout-attribute) attribute of the request to the specified number of milliseconds and returns this request instance. If *timeout* is not specified, returns the current response timeout, which defaults to 0.

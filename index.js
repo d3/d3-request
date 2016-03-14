@@ -1,4 +1,4 @@
-export {version} from "./build/version";
+export {version} from "./build/package";
 export {default as request} from "./src/request";
 export {default as html} from "./src/html";
 export {default as json} from "./src/json";

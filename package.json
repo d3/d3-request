@@ -23,7 +23,7 @@
   },
   "scripts": {
     "pretest": "rm -rf build && mkdir build && json2module package.json > build/package.js && bin/rollup-node && rollup -f umd -g d3-collection:d3_collection,d3-dispatch:d3_dispatch,d3-dsv:d3_dsv -n d3_request -o build/d3-request.js -- index.js",
-    "test": "faucet && eslint index.js src",
+    "test": "tape test/**/*-test.js && eslint index.js src",
     "prepublish": "npm run test && uglifyjs build/d3-request.js -c -m -o build/d3-request.min.js",
     "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cp build/d3-request.js ../d3.github.com/d3-request.v0.4.js && cp build/d3-request.min.js ../d3.github.com/d3-request.v0.4.min.js && cd ../d3.github.com && git add d3-request.v0.4.js d3-request.v0.4.min.js && git commit -m \"d3-request ${VERSION}\" && git push && cd - && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
   },
@@ -34,7 +34,6 @@
     "xmlhttprequest": "1"
   },
   "devDependencies": {
-    "faucet": "0.0",
     "json2module": "0.0",
     "rollup": "0.25",
     "tape": "4",

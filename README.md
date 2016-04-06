@@ -27,7 +27,7 @@ d3.request("/path/to/resource")
     .post("a=2&b=3", callback);
 ```
 
-This module has built-in support for parsing [JSON](#json), [XML](#xml), [CSV](#csv) and [TSV](#tsv). You can parse additional formats by using [request](#request) or [text](#text) directly.
+This module has built-in support for parsing [JSON](#json), [CSV](#csv) and [TSV](#tsv); in browsers, but not in Node, [HTML](#html) and [XML](#xml) are also supported. You can parse additional formats by using [request](#request) or [text](#text) directly.
 
 ## Installing
 
@@ -204,6 +204,8 @@ d3.request(url)
     .get(callback);
 ```
 
+HTML parsing requires a global document and relies on [DOM Ranges](https://dom.spec.whatwg.org/#ranges), which is [not supported by JSDOM](https://github.com/tmpvar/jsdom/issues/317) as of version 8.3; thus, this method is supported in browsers but not in Node.
+
 <a name="json" href="#json">#</a> d3.<b>json</b>(<i>url</i>[, <i>callback</i>])
 
 Creates a request for the [JSON](http://json.org) file at the specified *url* with the default mime type `"application/json"`.
@@ -280,3 +282,5 @@ d3.request(url)
     .response(function(xhr) { return xhr.responseXML; })
     .get(callback);
 ```
+
+XML parsing relies on [*xhr*.responseXML](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseXML) which is not supported by [node-XMLHttpRequest](https://github.com/driverdan/node-XMLHttpRequest/issues/8) as of version 1.8; thus, this method is supported in browsers but not in Node.

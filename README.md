@@ -204,7 +204,7 @@ d3.request(url)
     .get(callback);
 ```
 
-HTML parsing requires a global document and relies on [DOM Ranges](https://dom.spec.whatwg.org/#ranges), which is [not supported by JSDOM](https://github.com/tmpvar/jsdom/issues/317) as of version 8.3; thus, this method is supported in browsers but not in Node.
+HTML parsing requires a global document and relies on [DOM Ranges](https://dom.spec.whatwg.org/#ranges), which are [not supported by JSDOM](https://github.com/tmpvar/jsdom/issues/317) as of version 8.3; thus, this method is supported in browsers but not in Node.
 
 <a name="json" href="#json">#</a> d3.<b>json</b>(<i>url</i>[, <i>callback</i>])
 

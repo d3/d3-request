@@ -34,6 +34,7 @@
     "xmlhttprequest": "1"
   },
   "devDependencies": {
+    "eslint": "2",
     "json2module": "0.0",
     "rollup": "0.26",
     "tape": "4",

@@ -8,7 +8,7 @@
     "ajax",
     "XMLHttpRequest"
   ],
-  "homepage": "https://github.com/d3/d3-request",
+  "homepage": "https://d3js.org/d3-request/",
   "license": "BSD-3-Clause",
   "author": {
     "name": "Mike Bostock",
@@ -22,21 +22,21 @@
     "url": "https://github.com/d3/d3-request.git"
   },
   "scripts": {
-    "pretest": "rm -rf build && mkdir build && json2module package.json > build/package.js && bin/rollup-node && rollup -f umd -g d3-collection:d3_collection,d3-dispatch:d3_dispatch,d3-dsv:d3_dsv -n d3_request -o build/d3-request.js -- index.js",
+    "pretest": "rm -rf build && mkdir build && bin/rollup-node && rollup --banner \"$(preamble)\" -f umd -g d3-collection:d3,d3-dispatch:d3,d3-dsv:d3 -n d3 -o build/d3-request.js -- index.js",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
-    "prepublish": "npm run test && uglifyjs build/d3-request.js -c -m -o build/d3-request.min.js",
-    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cp build/d3-request.js ../d3.github.com/d3-request.v0.4.js && cp build/d3-request.min.js ../d3.github.com/d3-request.v0.4.min.js && cd ../d3.github.com && git add d3-request.v0.4.js d3-request.v0.4.min.js && git commit -m \"d3-request ${VERSION}\" && git push && cd - && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
+    "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-request.js -c -m -o build/d3-request.min.js",
+    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cp build/d3-request.js ../d3.github.com/d3-request.v0.5.js && cp build/d3-request.min.js ../d3.github.com/d3-request.v0.5.min.js && cd ../d3.github.com && git add d3-request.v0.5.js d3-request.v0.5.min.js && git commit -m \"d3-request ${VERSION}\" && git push && cd - && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
   },
   "dependencies": {
-    "d3-collection": "~0.2.0",
-    "d3-dispatch": "~0.4.0",
-    "d3-dsv": "~0.3.0",
+    "d3-collection": "~0.3.0",
+    "d3-dispatch": "~0.5.0",
+    "d3-dsv": "~0.4.0",
     "xmlhttprequest": "1"
   },
   "devDependencies": {
     "eslint": "2",
-    "json2module": "0.0",
-    "rollup": "0.26",
+    "package-preamble": "0.0",
+    "rollup": "0.27",
     "tape": "4",
     "uglify-js": "2"
   }

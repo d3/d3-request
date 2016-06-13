@@ -193,7 +193,7 @@ d3.request(url)
 
 <a name="html" href="#html">#</a> d3.<b>html</b>(<i>url</i>[, <i>callback</i>])
 
-Creates a request for the HTML file at the specified *url* with the default mime type "text/html". The HTML file is returned as a [document fragment](https://developer.mozilla.org/en-US/docs/DOM/range.createContextualFragment).
+Creates a request for the HTML file at the specified *url* with the default mime type `text/html`. The HTML file is returned as a [document fragment](https://developer.mozilla.org/en-US/docs/DOM/range.createContextualFragment).
 
 This convenience constructor is approximately equivalent to:
 

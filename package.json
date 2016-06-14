@@ -4,6 +4,7 @@
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",
+    "d3-module",
     "request",
     "ajax",
     "XMLHttpRequest"

@@ -26,18 +26,18 @@
     "pretest": "rm -rf build && mkdir build && bin/rollup-node && rollup --banner \"$(preamble)\" -f umd -g d3-collection:d3,d3-dispatch:d3,d3-dsv:d3 -n d3 -o build/d3-request.js -- index.js",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
     "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-request.js -c -m -o build/d3-request.min.js",
-    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cp build/d3-request.js ../d3.github.com/d3-request.v0.5.js && cp build/d3-request.min.js ../d3.github.com/d3-request.v0.5.min.js && cd ../d3.github.com && git add d3-request.v0.5.js d3-request.v0.5.min.js && git commit -m \"d3-request ${VERSION}\" && git push && cd - && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
+    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cp build/d3-request.js ../d3.github.com/d3-request.v1.js && cp build/d3-request.min.js ../d3.github.com/d3-request.v1.min.js && cd ../d3.github.com && git add d3-request.v1.js d3-request.v1.min.js && git commit -m \"d3-request ${VERSION}\" && git push && cd - && zip -j build/d3-request.zip -- LICENSE README.md build/d3-request.js build/d3-request.min.js"
   },
   "dependencies": {
-    "d3-collection": "~0.3.0",
-    "d3-dispatch": "~0.5.0",
-    "d3-dsv": "~0.4.0",
+    "d3-collection": "1",
+    "d3-dispatch": "1",
+    "d3-dsv": "1",
     "xmlhttprequest": "1"
   },
   "devDependencies": {
     "eslint": "2",
     "package-preamble": "0.0",
-    "rollup": "0.27",
+    "rollup": "0.31",
     "tape": "4",
     "uglify-js": "2"
   }

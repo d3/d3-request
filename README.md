@@ -107,12 +107,12 @@ If *type* is specified, sets the [response type](http://www.w3.org/TR/XMLHttpReq
 
 Sets the response value function to the specified function and returns this request instance. The response value function is used to map the response XMLHttpRequest object to a useful data value. See the convenience methods [json](#json) and [text](#text) for examples.
 
-<a name="request_get" href="#request_get">#</a> <i>request</i>.<b>get</b>([<i>callback</i>])
+<a name="request_get" href="#request_get">#</a> <i>request</i>.<b>get</b>([<i>data</i>][, <i>callback</i>])
 
 Equivalent to [*request*.send](#request_send) with the GET method:
 
 ```js
-request.send("GET", callback);
+request.send("GET", data, callback);
 ```
 
 <a name="request_post" href="#request_post">#</a> <i>request</i>.<b>post</b>([<i>data</i>][, <i>callback</i>])
@@ -131,7 +131,7 @@ Issues this request using the specified *method* (such as `GET` or `POST`), opti
 request
     .on("error", function(error) { callback(error); })
     .on("load", function(xhr) { callback(null, xhr); })
-    .send(method);
+    .send(method, data);
 ```
 
 If no *callback* is specified, then "load" and "error" listeners should be registered via [*request*.on](#request_on).

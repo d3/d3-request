@@ -40,6 +40,13 @@ tape("request(url, callback) is an alias for request(url).get(callback)", functi
   });
 });
 
+tape("request(url, nonFunction) throws an error", function(test) {
+  test.throws(function() { request.request("test/data/sample.txt", "fail"); }, /invalid callback/);
+  test.throws(function() { request.request("test/data/sample.txt", false); }, /invalid callback/);
+  test.throws(function() { request.request("test/data/sample.txt", 0); }, /invalid callback/);
+  test.end();
+});
+
 tape("request(url).mimeType(type).get(callback) observes the specified mime type", function(test) {
   request.request("test/data/sample.txt").mimeType("text/plain").get(function(error, request) {
     if (error) throw error;
@@ -47,6 +54,13 @@ tape("request(url).mimeType(type).get(callback) observes the specified mime type
     test.equal(request.responseText, "Hello, world!\n");
     test.end();
   });
+});
+
+tape("request(url).get(null, nonFunction) throws an error", function(test) {
+  test.throws(function() { request.request("test/data/sample.txt").get(null, "fail"); }, /invalid callback/);
+  test.throws(function() { request.request("test/data/sample.txt").get(null, false); }, /invalid callback/);
+  test.throws(function() { request.request("test/data/sample.txt").get(null, 0); }, /invalid callback/);
+  test.end();
 });
 
 tape("request(url).on(\"beforesend\", listener).get() invokes the listener before sending", function(test) {

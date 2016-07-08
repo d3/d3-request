@@ -104,15 +104,15 @@ export default function(url, callback) {
 
     // If callback is non-null, it will be used for error and load events.
     send: function(method, data, callback) {
-      if (!callback && typeof data === "function") callback = data, data = null;
-      if (callback && callback.length === 1) callback = fixCallback(callback);
       xhr.open(method, url, true, user, password);
       if (mimeType != null && !headers.has("accept")) headers.set("accept", mimeType + ",*/*");
       if (xhr.setRequestHeader) headers.each(function(value, name) { xhr.setRequestHeader(name, value); });
       if (mimeType != null && xhr.overrideMimeType) xhr.overrideMimeType(mimeType);
       if (responseType != null) xhr.responseType = responseType;
       if (timeout > 0) xhr.timeout = timeout;
-      if (callback) request.on("error", callback).on("load", function(xhr) { callback(null, xhr); });
+      if (callback == null && typeof data === "function") callback = data, data = null;
+      if (callback != null && callback.length === 1) callback = fixCallback(callback);
+      if (callback != null) request.on("error", callback).on("load", function(xhr) { callback(null, xhr); });
       event.call("beforesend", request, xhr);
       xhr.send(data == null ? null : data);
       return request;
@@ -129,9 +129,12 @@ export default function(url, callback) {
     }
   };
 
-  return callback
-      ? request.get(callback)
-      : request;
+  if (callback != null) {
+    if (typeof callback !== "function") throw new Error("invalid callback: " + callback);
+    return request.get(callback);
+  }
+
+  return request;
 }
 
 function fixCallback(callback) {

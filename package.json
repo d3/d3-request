@@ -17,6 +17,7 @@
   },
   "main": "build/d3-request.node.js",
   "browser": "build/d3-request.js",
+  "module": "index",
   "jsnext:main": "index.js",
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
   "devDependencies": {
     "eslint": "2",
     "package-preamble": "0.0",
-    "rollup": "0.33",
+    "rollup": "0.34",
     "tape": "4",
     "uglify-js": "2"
   }

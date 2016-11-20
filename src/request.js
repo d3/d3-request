@@ -19,7 +19,7 @@ export default function(url, callback) {
       && /^(http(s)?:)?\/\//.test(url)) xhr = new XDomainRequest;
 
   "onload" in xhr
-      ? xhr.onload = xhr.onerror = xhr.ontimeout = respond
+      ? xhr.onload = xhr.onerror = xhr.ontimeout = xhr.onabort = respond
       : xhr.onreadystatechange = function(o) { xhr.readyState > 3 && respond(o); };
 
   function respond(o) {

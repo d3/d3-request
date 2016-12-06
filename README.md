@@ -185,7 +185,7 @@ function row(d) {
 }
 ```
 
-The returned *request* exposes an additional *request*.row method as an alternative to passing the *row* conversion function to d3.csv. For example, this:
+The returned *request* exposes an additional *request*.row method as an alternative to passing the *row* conversion function to d3.csv, allowing you to configure the request before sending it. For example, this:
 
 ```js
 d3.csv(url, row, callback);
@@ -198,8 +198,6 @@ d3.csv(url)
     .row(row)
     .get(callback);
 ```
-
-This allows you to specify a *row* conversion when sending a POST request, for example.
 
 <a name="html" href="#html">#</a> d3.<b>html</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/html.js "Source")
 
@@ -292,7 +290,7 @@ function row(d) {
 }
 ```
 
-The returned *request* exposes an additional *request*.row method as an alternative to passing the *row* conversion function to d3.tsv. For example, this:
+The returned *request* exposes an additional *request*.row method as an alternative to passing the *row* conversion function to d3.tsv, allowing you to configure the request before sending it. For example, this:
 
 ```js
 d3.tsv(url, row, callback);
@@ -305,8 +303,6 @@ d3.tsv(url)
     .row(row)
     .get(callback);
 ```
-
-This allows you to specify a *row* conversion when sending a POST request, for example.
 
 <a name="xml" href="#xml">#</a> d3.<b>xml</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/xml.js "Source")
 

@@ -49,9 +49,11 @@ d3.csv("/path/to/file.csv", callback);
 
 ## API Reference
 
+### Request
+
 <a name="request" href="#request">#</a> d3.<b>request</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/request.js#L4 "Source")
 
-Returns a new asynchronous *request* for specified *url*. If no *callback* is specified, the request is not yet [sent](#request_send) and can be further configured. If a *callback* is specified, it is equivalent to calling [*request*.get](#request_get) immediately after construction:
+Returns a new asynchronous *request* for specified *url*. (See also [d3.json](#json), [d3.csv](#csv), [d3.tsv](#tsv), [d3.html](#html) and [d3.xml](#xml) for content-specific convenience constructors.) If no *callback* is specified, the request is not yet [sent](#request_send) and can be further configured. If a *callback* is specified, it is equivalent to calling [*request*.get](#request_get) immediately after construction:
 
 ```js
 d3.request(url)
@@ -152,6 +154,8 @@ The type must be one of the following:
 * `error` - when the request completes unsuccessfully; this includes 4xx and 5xx response codes.
 
 To register multiple listeners for the same *type*, the type may be followed by an optional name, such as `load.foo` and `load.bar`. See [d3-dispatch](https://github.com/d3/d3-dispatch) for details.
+
+### Parsing
 
 <a name="csv" href="#csv">#</a> d3.<b>csv</b>(<i>url</i>[[, <i>row</i>], <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/csv.js "Source")
 

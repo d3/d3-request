@@ -51,7 +51,7 @@ d3.csv("/path/to/file.csv", callback);
 
 <a name="request" href="#request">#</a> d3.<b>request</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/request.js#L4 "Source")
 
-Returns a new asynchronous request for specified *url*. If no *callback* is specified, the request is not yet [sent](#request_send) and can be further configured. If a *callback* is specified, it is equivalent to calling [*request*.get](#request_get) immediately after construction:
+Returns a new asynchronous *request* for specified *url*. If no *callback* is specified, the request is not yet [sent](#request_send) and can be further configured. If a *callback* is specified, it is equivalent to calling [*request*.get](#request_get) immediately after construction:
 
 ```js
 d3.request(url)
@@ -155,7 +155,24 @@ To register multiple listeners for the same *type*, the type may be followed by 
 
 <a name="csv" href="#csv">#</a> d3.<b>csv</b>(<i>url</i>[[, <i>row</i>], <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/csv.js "Source")
 
-Creates a request for the [CSV](https://github.com/d3/d3-dsv#csvParse) file at the specified *url* with the default mime type `text/csv`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
+Returns a new [*request*](#request) for the [CSV](https://github.com/d3/d3-dsv#csvParse) file at the specified *url* with the default mime type `text/csv`. If no *callback* is specified, this is equivalent to:
+
+```js
+d3.request(url)
+    .mimeType("text/csv")
+    .response(function(xhr) { return d3.csvParse(xhr.responseText, row); });
+```
+
+If a *callback* is specified, a [GET](#request_get) request is sent, making it equivalent to:
+
+```js
+d3.request(url)
+    .mimeType("text/csv")
+    .response(function(xhr) { return d3.csvParse(xhr.responseText, row); })
+    .get(callback);
+```
+
+An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
 
 ```js
 function row(d) {
@@ -168,7 +185,7 @@ function row(d) {
 }
 ```
 
-The *row* conversion function can be changed by calling *request*.row on the returned instance. For example, this:
+The returned *request* exposes an additional *request*.row method as an alternative to passing the *row* conversion function to d3.csv. For example, this:
 
 ```js
 d3.csv(url, row, callback);
@@ -182,20 +199,19 @@ d3.csv(url)
     .get(callback);
 ```
 
-This convenience constructor is approximately equivalent to:
-
-```js
-d3.request(url)
-    .mimeType("text/csv")
-    .response(function(xhr) { return d3.csvParse(xhr.responseText, row); })
-    .get(callback);
-```
+This allows you to specify a *row* conversion when sending a POST request, for example.
 
 <a name="html" href="#html">#</a> d3.<b>html</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/html.js "Source")
 
-Creates a request for the HTML file at the specified *url* with the default mime type `text/html`. The HTML file is returned as a [document fragment](https://developer.mozilla.org/en-US/docs/DOM/range.createContextualFragment).
+Returns a new [*request*](#request) for the HTML file at the specified *url* with the default mime type `text/html`. The HTML file is returned as a [document fragment](https://developer.mozilla.org/en-US/docs/DOM/range.createContextualFragment). If no *callback* is specified, this is equivalent to:
 
-This convenience constructor is approximately equivalent to:
+```js
+d3.request(url)
+    .mimeType("text/html")
+    .response(function(xhr) { return document.createRange().createContextualFragment(xhr.responseText); });
+```
+
+If a *callback* is specified, a [GET](#request_get) request is sent, making it equivalent to:
 
 ```js
 d3.request(url)
@@ -208,9 +224,15 @@ HTML parsing requires a global document and relies on [DOM Ranges](https://dom.s
 
 <a name="json" href="#json">#</a> d3.<b>json</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/json.js "Source")
 
-Creates a request for the [JSON](http://json.org) file at the specified *url* with the default mime type `application/json`.
+Returns a new [*request*](#request) to [get](#request_get) the [JSON](http://json.org) file at the specified *url* with the default mime type `application/json`. If no *callback* is specified, this is equivalent to:
 
-This convenience constructor is approximately equivalent to:
+```js
+d3.request(url)
+    .mimeType("application/json")
+    .response(function(xhr) { return JSON.parse(xhr.responseText); });
+```
+
+If a *callback* is specified, a [GET](#request_get) request is sent, making it equivalent to:
 
 ```js
 d3.request(url)
@@ -221,9 +243,15 @@ d3.request(url)
 
 <a name="text" href="#text">#</a> d3.<b>text</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/text.js "Source")
 
-Creates a request for the text file at the specified *url* with the default mime type `text/plain`.
+Returns a new [*request*](#request) to [get](#request_get) the text file at the specified *url* with the default mime type `text/plain`. If no *callback* is specified, this is equivalent to:
 
-This convenience constructor is approximately equivalent to:
+```js
+d3.request(url)
+    .mimeType("text/plain")
+    .response(function(xhr) { return xhr.responseText; });
+```
+
+If a *callback* is specified, a [GET](#request_get) request is sent, making it equivalent to:
 
 ```js
 d3.request(url)
@@ -234,7 +262,24 @@ d3.request(url)
 
 <a name="tsv" href="#tsv">#</a> d3.<b>tsv</b>(<i>url</i>[[, <i>row</i>], <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/tsv.js "Source")
 
-Creates a request for the [TSV](https://github.com/d3/d3-dsv#tsvParse) file at the specified *url* with the default mime type `text/tab-separated-values`. An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
+Returns a new [*request*](#request) for a [TSV](https://github.com/d3/d3-dsv#tsvParse) file at the specified *url* with the default mime type `text/tab-separated-values`. If no *callback* is specified, this is equivalent to:
+
+```js
+d3.request(url)
+    .mimeType("text/tab-separated-values")
+    .response(function(xhr) { return d3.tsvParse(xhr.responseText, row); });
+```
+
+If a *callback* is specified, a [GET](#request_get) request is sent, making it equivalent to:
+
+```js
+d3.request(url)
+    .mimeType("text/tab-separated-values")
+    .response(function(xhr) { return d3.tsvParse(xhr.responseText, row); })
+    .get(callback);
+```
+
+An optional *row* conversion function may be specified to map and filter row objects to a more-specific representation; see [*dsv*.parse](https://github.com/d3/d3-dsv#dsv_parse) for details. For example:
 
 ```js
 function row(d) {
@@ -247,7 +292,7 @@ function row(d) {
 }
 ```
 
-The *row* conversion function can be changed by calling *request*.row on the returned instance. For example, this:
+The returned *request* exposes an additional *request*.row method as an alternative to passing the *row* conversion function to d3.tsv. For example, this:
 
 ```js
 d3.tsv(url, row, callback);
@@ -261,20 +306,19 @@ d3.tsv(url)
     .get(callback);
 ```
 
-This convenience constructor is approximately equivalent to:
-
-```js
-d3.request(url)
-    .mimeType("text/tab-separated-values")
-    .response(function(xhr) { return d3.tsvParse(xhr.responseText, row); })
-    .get(callback);
-```
+This allows you to specify a *row* conversion when sending a POST request, for example.
 
 <a name="xml" href="#xml">#</a> d3.<b>xml</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/xml.js "Source")
 
-Creates a request for the XML file at the specified *url* with the default mime type `application/xml`.
+Returns a new [*request*](#request) to [get](#request_get) the XML file at the specified *url* with the default mime type `application/xml`. If no *callback* is specified, this is equivalent to:
 
-This convenience constructor is approximately equivalent to:
+```js
+d3.request(url)
+    .mimeType("application/xml")
+    .response(function(xhr) { return xhr.responseXML; });
+```
+
+If a *callback* is specified, a [GET](#request_get) request is sent, making it equivalent to:
 
 ```js
 d3.request(url)

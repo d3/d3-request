@@ -51,7 +51,7 @@ d3.csv("/path/to/file.csv", callback);
 
 <a name="request" href="#request">#</a> d3.<b>request</b>(<i>url</i>[, <i>callback</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/request.js#L4 "Source")
 
-Returns a new *request* for specified *url*. If no *callback* is specified, the request is not yet [sent](#request_send) and can be further configured. If a *callback* is specified, it is equivalent to calling [*request*.get](#request_get) immediately after construction:
+Returns a new *request* for specified *url*. If no *callback* is specified, the returned *request* is not yet [sent](#request_send) and can be further configured. If a *callback* is specified, it is equivalent to calling [*request*.get](#request_get) immediately after construction:
 
 ```js
 d3.request(url)

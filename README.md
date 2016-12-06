@@ -58,9 +58,7 @@ d3.request(url)
     .get(callback);
 ```
 
-Note: if you wish to specify a request header or a mime type, you must *not* specify a callback to the constructor. Use [*request*.header](#request_header) or [*request*.mimeType](#request_mimeType) followed by [*request*.get](#request_get) instead.
-
-See [d3.json](#json), [d3.csv](#csv), [d3.tsv](#tsv), [d3.html](#html) and [d3.xml](#xml) for content-specific convenience constructors.
+If you wish to specify a request header or a mime type, you must *not* specify a callback to the constructor. Use [*request*.header](#request_header) or [*request*.mimeType](#request_mimeType) followed by [*request*.get](#request_get) instead. See [d3.json](#json), [d3.csv](#csv), [d3.tsv](#tsv), [d3.html](#html) and [d3.xml](#xml) for content-specific convenience constructors.
 
 <a name="request_header" href="#request_header">#</a> <i>request</i>.<b>header</b>(<i>name</i>[, <i>value</i>]) [<>](https://github.com/d3/d3-request/blob/master/src/request.js#L51 "Source")
 

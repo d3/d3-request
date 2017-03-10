@@ -1,6 +1,6 @@
 {
   "name": "d3-request",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A convenient alternative to XMLHttpRequest.",
   "keywords": [
     "d3",

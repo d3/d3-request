@@ -31,7 +31,7 @@ export default function(url, callback) {
         try {
           result = response.call(request, xhr);
         } catch (e) {
-          event.call("error", request, e);
+          event.call("error", request, e, xhr);
           return;
         }
       } else {
@@ -39,7 +39,7 @@ export default function(url, callback) {
       }
       event.call("load", request, result);
     } else {
-      event.call("error", request, o);
+      event.call("error", request, o, xhr);
     }
   }
 

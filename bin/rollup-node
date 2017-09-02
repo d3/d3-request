@@ -5,12 +5,14 @@ var fs = require("fs"),
     dependencies = require("../package.json").dependencies;
 
 rollup.rollup({
-  entry: "index.js",
+  input: "index.js",
   external: Object.keys(dependencies)
 }).then(function(bundle) {
-  var code = bundle.generate({
+  return bundle.generate({
     format: "cjs"
-  }).code.replace(
+  });
+}).then(function(bundle) {
+  var code = bundle.code.replace(
     /^'use strict';$/m,
     "'use strict';\n\nvar XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;"
   );

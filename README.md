@@ -1,5 +1,7 @@
 # d3-request
 
+**This module is deprecated as of D3 5.0; please use [d3-fetch](https://github.com/d3/d3-fetch) instead.**
+
 This module provides a convenient alternative to XMLHttpRequest. For example, to load a text file:
 
 ```js
@@ -44,8 +46,6 @@ d3.csv("/path/to/file.csv", callback);
 
 </script>
 ```
-
-[Try d3-request in your browser.](https://tonicdev.com/npm/d3-request)
 
 ## API Reference
 

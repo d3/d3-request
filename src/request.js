@@ -104,7 +104,11 @@ export default function(url, callback) {
 
     // If callback is non-null, it will be used for error and load events.
     send: function(method, data, callback) {
-      xhr.open(method, url, true, user, password);
+      if (user === null && password === null) {
+        xhr.open(method, url, true);
+      } else {
+        xhr.open(method, url, true, user, password);
+      }
       if (mimeType != null && !headers.has("accept")) headers.set("accept", mimeType + ",*/*");
       if (xhr.setRequestHeader) headers.each(function(value, name) { xhr.setRequestHeader(name, value); });
       if (mimeType != null && xhr.overrideMimeType) xhr.overrideMimeType(mimeType);
